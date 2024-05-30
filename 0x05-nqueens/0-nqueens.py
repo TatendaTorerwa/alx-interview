@@ -5,13 +5,16 @@ Solution to the nqueens problem
 
 import sys
 
+
 def print_usage_and_exit():
     print("Usage: nqueens N")
     sys.exit(1)
 
+
 def print_error_and_exit(message):
     print(message)
     sys.exit(1)
+
 
 def is_safe(board, row, col, N):
     for i in range(col):
@@ -27,6 +30,7 @@ def is_safe(board, row, col, N):
             return False
 
     return True
+
 
 def solve_nqueens_util(board, col, N, solutions):
     if col >= N:
@@ -44,11 +48,13 @@ def solve_nqueens_util(board, col, N, solutions):
             solve_nqueens_util(board, col + 1, N, solutions)
             board[i][col] = 0
 
+
 def solve_nqueens(N):
     board = [[0 for _ in range(N)] for _ in range(N)]
     solutions = []
     solve_nqueens_util(board, 0, N, solutions)
     return solutions
+
 
 def main():
     if len(sys.argv) != 2:
@@ -65,6 +71,7 @@ def main():
     solutions = solve_nqueens(N)
     for solution in solutions:
         print(solution)
+
 
 if __name__ == "__main__":
     main()
