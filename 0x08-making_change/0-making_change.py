@@ -1,28 +1,25 @@
 #!/usr/bin/python3
-""" Making changes """
+""" makechange challenge """
 
 
 def makeChange(coins, total):
-    """ Generate changes needed to reach total
-
-    Args:
-        coins ([List]): [List of Coins available]
-        total ([int]): [total amount needed]
+    """
+    mkechange challenge
     """
 
-    if total == 0:
+    if total <= 0:
         return 0
 
-    if total is None:
-        return -1
-
-    """ Initialize array (dp table) with "infinity" values."""
-    dp = [float('inf')] * (total + 1)
-    dp[0] = 0
-
-    """ Fill the dp table."""
-    for coin in coins:
-        for j in range(coin, total + 1):
-            dp[j] = min(dp[j], dp[j - coin] + 1)
-
-    return dp[total] if dp[total] != float('inf') else -1
+    coins.sort(reverse=True)
+    sum = 0
+    i = 0
+    counter = 0
+    num_coins = len(coins)
+    while sum < total and i < num_coins:
+        while coins[i] <= total - sum:
+            sum += coins[i]
+            counter += 1
+            if sum == total:
+                return counter
+        i += 1
+    return -1
